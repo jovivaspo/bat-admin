@@ -1,0 +1,9 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(40deg, rgba(0, 0, 0, 1) 0%, rgba(0, 119, 248, 1) 100%);
+    overflow-x: hidden
+}

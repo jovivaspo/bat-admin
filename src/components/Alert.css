@@ -1,0 +1,43 @@
+.alert-container{
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    border-radius: 10px;
+    padding: 8px;
+    transition: transform 0.3s linear;
+    transform: translate(250%,0);
+    max-height: 40px;
+
+    display: flex;
+    align-items: center;
+}
+
+.alert-container p{
+    margin: 8px;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.alert-container.visible{
+    transition: transform 0.3s linear;
+    transform: translate(0,0);
+}
+
+@media only screen and (min-width: 768px) {
+    .alert-container{
+        position: absolute;
+        top:95px;
+        right: 15px;
+        border-radius: 10px;
+        padding: 8px;
+        transition: transform 0.3s linear;
+        transform: translate(250%,0);
+    }
+
+    .alert-container.visible{
+        transition: transform 0.3s linear;
+        transform: translate(0,0);
+    }
+
+}
