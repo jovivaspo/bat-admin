@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import LogOut from './LogOut'
 
-const items = ['users','perfil']
+const items = ['perfil', 'users', 'uses']
 
 const Menu = React.forwardRef((props,ref) => {
 

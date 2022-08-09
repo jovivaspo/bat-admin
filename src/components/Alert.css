@@ -27,7 +27,7 @@
 @media only screen and (min-width: 768px) {
     .alert-container{
         position: absolute;
-        top:95px;
+        top:100px;
         right: 15px;
         border-radius: 10px;
         padding: 8px;

@@ -20,8 +20,13 @@ export const login = createAsyncThunk('/login', async ({email,password}, thunkAP
 
 
         if(data.error){
+            if(data.attemps){
+                /*Añadir lógica para el recaptcha*/
+                console.log(data.attemps)
+            }
 
             return thunkAPI.rejectWithValue(data.error)
+
         }
 
         if(!data.user.role.includes('admin')){
@@ -45,7 +50,7 @@ export const logOut = createAsyncThunk("/logout", async () => {
 })
 
 export const getUser = createAsyncThunk('/user', async({id,token}, thunkAPI)=>{
-    console.log(token)
+    console.log(token, id)
     try{
         const res = await fetch(`${API.DOMAIN}/${API.USER}/${id}`,{
             method:'GET',
@@ -67,7 +72,7 @@ export const getUser = createAsyncThunk('/user', async({id,token}, thunkAPI)=>{
         console.log(data)
 
         return {
-            user:data,
+            user: data.user,
             token
         }
 
@@ -98,7 +103,7 @@ const userSlice = createSlice({
             state.user = null
         },
         [getUser.fulfilled] :(state, action)=>{
-            state.user = {...action.payload.user,...action.payload.token}
+            state.user = action.payload
         }
     }
 })

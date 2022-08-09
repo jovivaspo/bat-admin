@@ -18,7 +18,7 @@ const LogOut = ({setVisible}) => {
   
     const logOutTime = setTimeout(()=>{
       dispatch(logOut())
-    },3000)
+    },3200)
      
     return ()=> clearTimeout(logOutTime)
      

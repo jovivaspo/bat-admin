@@ -8,6 +8,7 @@ import { setMessage } from '../redux/reducers/messageReducer'
 import { setLoading } from '../redux/reducers/loadingReducer'
 
 
+
 const initialForm = {
     email: "",
     password: ""
@@ -19,6 +20,7 @@ const FormLogin = () => {
     const errorEmail = useRef()
     const errorPass = useRef()
     const dispatch = useDispatch()
+  
 
     const handlerForm = (e) => {
         e.preventDefault()
@@ -48,6 +50,7 @@ const FormLogin = () => {
         }))
             .unwrap()
             .then(res => {
+              
                 localStorage.setItem('user', JSON.stringify(res))
                 dispatch(setMessage(
                     {

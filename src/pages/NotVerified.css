@@ -1,0 +1,36 @@
+.container-notveriried {
+    width: 90%;
+    margin: 0 auto;
+    padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.btn-resend {
+    margin: 0.8rem;
+    background-color: #0077F8;
+    color: #fff;
+    border: none;
+    padding: 0.4rem;
+    border-radius: 999px;
+    font-weight: bold;
+}
+
+@media only screen and (min-width: 768px) {
+    .container-notveriried {
+        display: block;
+        margin-top: 1rem
+    }
+
+    .container-notveriried p {
+        margin: 0.5rem;
+    }
+
+    .btn-resend {
+       
+        padding: 0.8rem;
+      
+    }
+
+}
