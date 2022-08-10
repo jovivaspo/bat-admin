@@ -1,10 +1,17 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 import { API } from '../../services/api'
+import { setValidUser,  setAttemps, clearRecaptcha } from './recaptchaReducer'
 
 
 export const login = createAsyncThunk('/login', async ({email,password}, thunkAPI)=>{
     try{
-       
+        const state = thunkAPI.getState()
+        const recaptcha = state.recaptcha
+        console.log(recaptcha.validUser)
+        if(!recaptcha.validUser){
+            return thunkAPI.rejectWithValue("Acepte el reCAPTCHA para continuar")
+        }
+
         const res = await fetch(`${API.DOMAIN}/${API.USER}/login`,{
             method:'POST',
             headers:{
@@ -17,22 +24,29 @@ export const login = createAsyncThunk('/login', async ({email,password}, thunkAP
             })
         })
         const data = await res.json()
+      
+        if(data.attemps){
+            localStorage.setItem('attemps', data.attemps)
+            thunkAPI.dispatch(setAttemps(data.attemps))
 
+            if(data.attemps >= 3){
+                thunkAPI.dispatch(setValidUser(false))
+                return thunkAPI.rejectWithValue(data.error)
+            }
+           
+        }
 
         if(data.error){
-            if(data.attemps){
-                /*Añadir lógica para el recaptcha*/
-                console.log(data.attemps)
-            }
-
             return thunkAPI.rejectWithValue(data.error)
-
         }
 
         if(!data.user.role.includes('admin')){
             return  thunkAPI.rejectWithValue("Permiso denegado")
         }
 
+        thunkAPI.dispatch(clearRecaptcha())
+        localStorage.removeItem('attemps')
+       
         return {
             user:data.user,
             token:data.token

@@ -6,6 +6,7 @@ import './FormLogin.css'
 import Loader from './Loader'
 import { setMessage } from '../redux/reducers/messageReducer'
 import { setLoading } from '../redux/reducers/loadingReducer'
+import ReCAPTCH from './ReCAPTCH'
 
 
 
@@ -15,7 +16,9 @@ const initialForm = {
 }
 
 const FormLogin = () => {
-    const loading = useSelector(state=>state.loading)
+    const loading = useSelector(state => state.loading)
+    const recaptcha = useSelector(state => state.recaptcha)
+
     const [form, setForm] = useState(initialForm)
     const errorEmail = useRef()
     const errorPass = useRef()
@@ -62,7 +65,6 @@ const FormLogin = () => {
                 setForm(initialForm)
             })
             .catch(error => {
-                
                 dispatch(setLoading(false))
                 dispatch(setMessage(
                     {
@@ -88,6 +90,7 @@ const FormLogin = () => {
                 <input type='password' name='password' placeholder='Contraseña' value={form.password} onChange={handleChange} />
                 <p ref={errorPass} className='error error-password'></p>
             </div>
+            <ReCAPTCH recaptcha={recaptcha}/>
             <button className='btn-login' onClick={handlerForm}>
                 {!loading ? "Login" : <Loader size={36} />}
             </button>

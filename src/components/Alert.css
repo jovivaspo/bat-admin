@@ -33,6 +33,12 @@
         padding: 8px;
         transition: transform 0.3s linear;
         transform: translate(250%,0);
+       
+    }
+
+    .alert-container p{
+        font-size: 1rem;
+        padding: 1rem;
     }
 
     .alert-container.visible{

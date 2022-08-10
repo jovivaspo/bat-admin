@@ -81,7 +81,12 @@ header {
         align-items: center;
         height: 100%;
         background-color: transparent;
+        gap:1.5rem
          
+    }
+
+    .menu ul{
+        padding: 0;
     }
 
     .menu a{

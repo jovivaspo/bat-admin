@@ -9,7 +9,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import NotVerified from './pages/NotVerified';
 import Layout from './components/Layout';
 import { useEffect } from 'react';
-import { getUser } from './redux/reducers/userReducer';
+import { getUser, logOut } from './redux/reducers/userReducer';
+import { setMessage } from './redux/reducers/messageReducer';
 
 
 function App() {
@@ -31,6 +32,12 @@ function App() {
         })
         .catch(error => {
           console.log(error)
+          if (error === 'TokenExpiredError')
+            dispatch(setMessage({
+              message: 'Sesión caducada',
+              type: 'info'
+            }))
+            dispatch(logOut())
         })
     }
     if (user) {
