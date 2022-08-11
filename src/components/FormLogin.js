@@ -82,7 +82,7 @@ const FormLogin = () => {
 
     return (
         <form className='form-login'>
-            <h2>Inicia sesión</h2>
+            <h2 className='title-login'>Inicia sesión</h2>
             <div className='container-logo'><Logo /></div>
             <div className='container-inputs'>
                 <input type='email' name='email' placeholder='Email' value={form.email} onChange={handleChange} />

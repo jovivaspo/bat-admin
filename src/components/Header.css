@@ -16,6 +16,10 @@ header {
     color: #0077F8;
 }
 
+.logo{
+    width: 240px;
+}
+
 .menu {
     position: absolute;
     left: 0;

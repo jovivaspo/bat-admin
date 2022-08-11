@@ -9,8 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import NotVerified from './pages/NotVerified';
 import Layout from './components/Layout';
 import { useEffect } from 'react';
-import { getUser, logOut } from './redux/reducers/userReducer';
-import { setMessage } from './redux/reducers/messageReducer';
+import { loadUser } from './services/fetchFunctions';
 
 
 function App() {
@@ -24,24 +23,8 @@ function App() {
   const email = user?.user.email || null
 
   useEffect(() => {
-    const loadUser = async () => {
-      dispatch(getUser({ id, token }))
-        .unwrap()
-        .then(res => {
-          console.log(res)
-        })
-        .catch(error => {
-          console.log(error)
-          if (error === 'TokenExpiredError')
-            dispatch(setMessage({
-              message: 'Sesión caducada',
-              type: 'info'
-            }))
-            dispatch(logOut())
-        })
-    }
     if (user) {
-      loadUser()
+      loadUser(id, token, dispatch)
     }
   }, [])
 
