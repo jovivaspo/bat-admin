@@ -10,6 +10,7 @@ import NotVerified from './pages/NotVerified';
 import Layout from './components/Layout';
 import { useEffect } from 'react';
 import { loadUser } from './services/fetchFunctions';
+import Charger from './pages/Charger';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
               <Route path='/' element={<Home user={user} />} />
               <Route path='/users' element={<Users />} />
               <Route path='/perfil' element={<Perfil user={user} />} />
+              <Route path='/charger/:id' element={<Charger/>} />
               <Route path='*' element={<NotFound />} />
             </Routes>
           </Layout>
